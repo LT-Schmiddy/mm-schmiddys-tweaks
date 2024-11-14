@@ -7,7 +7,8 @@
                 "${workspaceFolder}/include/dummy_headers",
                 "${workspaceFolder}/mm-decomp/include",
                 "${workspaceFolder}/mm-decomp/src",
-                "${workspaceFolder}/mm-decomp/assets"
+                "${workspaceFolder}/mm-decomp/assets",
+                "${workspaceFolder}/offline_build"
             ],
             "defines": [
                 "F3DEX_GBI_2",
@@ -16,7 +17,8 @@
             ],
             "compilerPath": "clang",
             "cStandard": "c99",
-            "intelliSenseMode": "clang-x86"
+            "intelliSenseMode": "clang-x86",
+            "configurationProvider": "ms-vscode.cmake-tools"
         }
     ],
     "version": 4

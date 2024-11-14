@@ -1,3 +1,4 @@
+# File Types:
 *.d
 *.o
 *.elf
@@ -7,7 +8,13 @@
 *.lib
 *.pdb
 *.exp
+
+# Files
 ./funcs.h
 patches.map
-build/
 .vscode/settings.json
+
+# Directories
+build/
+generated/
+tools/

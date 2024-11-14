@@ -8,6 +8,7 @@
 *.lib
 *.pdb
 *.exp
+*.pyc
 
 # Files
 ./funcs.h

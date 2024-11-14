@@ -1,27 +1,32 @@
 import pathlib, subprocess, os, tomllib
+import build_n64recomp_tools as bnt
 
 mod_data = tomllib.loads(pathlib.Path("mod.toml").read_text())["manifest"]
-print(mod_data)
+# print(mod_data)
 
-subprocess.call("make")
+
+deps = bnt.get_dependencies()
+
+subprocess.call(deps["make"])
 
 subprocess.call(
     [
-        "./tools/RecompModTool.exe",
+        # "./tools/RecompModTool.exe",
+        bnt.get_RecompModTool_path(),
         "mod.toml",
         "build"
     ],
     cwd=os.getcwd()
 )
 
-os.makedirs("./generated", exist_ok=True)
 subprocess.call(
     [
-        "./tools/OfflineModRecomp.exe",
+        # "./tools/OfflineModRecomp.exe",
+        bnt.get_OfflineModRecomp_path(),
         "build/mod_syms.bin",
         "build/mod_binary.bin",
         "Zelda64RecompSyms/mm.us.rev1.syms.toml",
-        "generated/mod_recompiled.c",
+        "build/mod_recompiled.c",
     ],
     cwd=os.getcwd()
 )
@@ -29,8 +34,8 @@ subprocess.call(
 # Compile DLL:
 subprocess.call(
     [
-        "clang-cl", 
-        "generated/mod_recompiled.c", 
+        deps["clang-cl"], 
+        "build/mod_recompiled.c", 
         "-fuse-ld=lld", 
         "-Z7",
         "/Ioffline_build",
